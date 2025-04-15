@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Post JSON File to Two URLs
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: 
+      -main # Runs only when pushing to the main branch
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  post_json
+    runs-on: ubuntu-latest
+    steps:
+      -name: Checkout Repository
+       uses: actions/checkout@v4
+
+     
+      - name: Run a one-line script
+        run:|
+        curl-X POST"https://:VrsNYmYIS76f9uhOzcylaQ@tandem.autodesk.com/api/v1/timeseries/models/urn:adsk.dtm:p9mbdFeeQJi5Qu8s7D6RDw/streams/AQAAAHLyRxZS1U7uhNckEaMAiecAAAAA" \
+            -H"Content-Type: application/json" \
+            -d @stream.sjon
+            
+      - name: Send JSON Data to Second URL
+        run: |
+          curl -X POST "https://:lAiIQfi5SAK2GmtjGGqhIQ@tandem.autodesk.com/api/v1/timeseries/models/urn:adsk.dtm:p9mbdFeeQJi5Qu8s7D6RDw/streams/AQAAALMgT0PQ2EkTrvDKTqITRBEAAAAA" \
+               -H "Content-Type: application/json" \
+               -d @stream.json
+        
