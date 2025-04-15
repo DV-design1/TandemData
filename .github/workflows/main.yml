@@ -1,18 +1,12 @@
 name: Post JSON File to Two URLs
 
-on: 
-  push:
-    branches:
-      - main # Runs only when pushing to the main branch
-  workflow_dispatch: # Allows manual trigger
-
 jobs:
   post_json:
+    name: Send JSON Data to Two URLs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
-
 
       - name: Send JSON Data to First URL
         run: |
@@ -25,4 +19,4 @@ jobs:
           curl -X POST "https://second-api-url.com" \
                -H "Content-Type: application/json" \
                -d @stream.json
-|
+
